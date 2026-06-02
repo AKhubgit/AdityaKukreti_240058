@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool func(string s) {
+      stack<char> stk;
+
+      int i=0;
+        
+      while(i<s.size()){
+          if(s[i]=='('){
+              stk.push(s[i]);
+          }else if(s[i]=='['){  
+            stk.push(s[i]);
+          }else if(s[i]=='{'){
+              stk.push(s[i]);
+          }else if(s[i]==')'){
+              if(stk.size()>0 && stk.top()=='('){
+                  stk.pop();
+              }else{
+                  return false;
+              }
+          }else if(s[i]==']'){
+              if(stk.size()>0 && stk.top()=='['){
+                  stk.pop();
+              }else{
+                  return false;
+              }
+          }else if(s[i]=='}'){
+              if(stk.size()>0 && stk.top()=='{'){
+                 stk.pop();
+              }else{
+                  return false;
+              }
+          }
+
+          i++;
+      }
+      if(stk.size()>0){
+          return false;
+      }
+
+      return true;
+  }
+
+int main(){
+    
+    int n;
+    cin >> n;
+    
+    int j=0;
+    while(j<n){
+        
+        string s;
+        cin >> s;
+        
+        if(func(s)){
+            cout << "YES" << endl;
+        }else{
+            cout << "NO" << endl;
+        }
+        j++;
+    }
+    
+    
+}
